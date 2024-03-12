@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.catalina.connector.Request;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
@@ -73,7 +74,7 @@ public class PurchaseController {
 
 	    
         Product product = purchaseService.getPurchase02(prodNo);
-
+    
         model.addAttribute("product", product);
 	    model.addAttribute("tranNo", prodNo);
 
@@ -106,78 +107,76 @@ public class PurchaseController {
 		
 		return "forward:/purchase/addPurchase.jsp";
 	}
-	/*
-	@RequestMapping("/getProduct.do")
-	public String getProduct(HttpServletResponse response, HttpServletRequest request, @RequestParam("prodNo") int prodNo , Model model ) throws Exception {
+	
+	@RequestMapping("/getPurchase.do")
+	public String getPurchase(HttpServletRequest request,
+			   @ModelAttribute("purchase") Purchase purchase, 
+			   @RequestParam("tranNo") int tranNo,
+			   Model model) throws Exception {
 		
-		System.out.println("/getProduct.do");
+		System.out.println("/getPurchase.do");
 		//Business Logic
-		Product product = productService.getProduct(prodNo);
 		// Model 과 View 연결
-		model.addAttribute("product", product);
+		HttpSession session=request.getSession();
+		String userId = (String)session.getAttribute("userId");
+	    Product product = productService.getProduct(tranNo);
+	  
+	  
+	    
+	    purchaseService.getPurchase(tranNo);
+	    purchase = purchaseService.getPurchase(tranNo);
+	    model.addAttribute("purchase", purchase);
 		
-		
-		String history = null;
-        Cookie[] cookies = request.getCookies();
-        if (cookies != null && cookies.length > 0) {
-            for (int i = 0; i < cookies.length; i++) {
-                Cookie cookie = cookies[i];
-                if (cookie.getName().equals("history")) {
-                    history = cookie.getValue();
-                    break;
-                }
-            }
-        }
-        String newProdNo = request.getParameter("prodNo");
-        if (newProdNo != null && !newProdNo.isEmpty()) {
-            if (history == null) {
-                history = ":" + newProdNo;
-            } else {
-                history += ":" + newProdNo;
-            }
-
-            Cookie historyCookie = new Cookie("history", history);
-            response.addCookie(historyCookie);
-        }
-            if (request.getParameter("menu").equals("search")) {
-                return "forward:/product/readProduct.jsp";
-            } else {
-                return "forward:/product/getProduct.jsp";
-            }
+	    return "forward:/purchase/getPurchase.jsp";
         
 	}
 
-	@RequestMapping("/updateProductView.do")
-	public String updateProductView( @RequestParam("prodNo") int prodNo , Model model ) throws Exception{
-
-		System.out.println("/updateProductView.do");
+	@RequestMapping("/updatePurchaseView.do")
+	public String updatePurchaseView(@RequestParam("tranNo") int tranNo ,
+									HttpServletRequest request,
+									Model model ) throws Exception{
+			
+		System.out.println("/updatePurchaseView.do");
 		//Business Logic
-		Product product = productService.getProduct(prodNo);
-		// Model 과 View 연결
-		model.addAttribute("product", product);
-		
-		return "forward:/product/updateProductView.jsp";
+	
+		Purchase purchase = purchaseService.getPurchase(tranNo);
+		System.out.println(purchase);
+		model.addAttribute("purchase", purchase);
+		return "forward:/purchase/updatePurchaseView.jsp";
+		//return null;
 	}
 
-	@RequestMapping("/updateProduct.do")
-	public String updateProduct( HttpServletRequest request, @ModelAttribute("prodNo") Product product , Model model ) throws Exception{
+	@RequestMapping("/updatePurchase.do")
+	public String updatePurchase( HttpServletRequest request, 
+								  @ModelAttribute("purchase") Purchase purchase ,
+								  Model model ) throws Exception{
 
-		System.out.println("/updateProduct.do");
+		System.out.println("/updatePurchase.do");
 		//Business Logic
-		productService.updateProduct(product);
-		product.setRegDate(Date.valueOf(request.getParameter("regDatee")));
-		System.out.println("/Product.do");
+		HttpSession session=request.getSession();
+		purchase.setBuyer((User)session.getAttribute("user"));
+		purchase.setPurchaseProd(new Product());
+		
+		
+		purchaseService.updatePurchase(purchase);
+		purchase = purchaseService.getPurchase(purchase.getTranNo());
+		
+		purchase.setOrderDate(Date.valueOf(request.getParameter("regDatee")));
+		//Product getProd = productService.getProduct(tranNo);
+		System.out.println("prodno test: " + purchase);
+		purchase.setPurchaseProd(productService.getProduct(purchase.getPurchaseProd().getProdNo()));
+		System.out.println("/updatePurchase.do");
 		//Business Logic
 		// Model 과 View 연결
-		model.addAttribute("product", product);
+		model.addAttribute("purchase", purchase);
 		
-		return "forward:/product/updateProduct.jsp";
+		return "forward:/purchase/updatePurchase.jsp";
 	}
 
-	@RequestMapping("/listProduct.do")
-	public String listProduct( @ModelAttribute("search") Search search , Model model , HttpServletRequest request) throws Exception{
+	@RequestMapping("/listPurchase.do")
+	public String listPurchase( @ModelAttribute("search") Search search , Model model , HttpServletRequest request) throws Exception{
 		
-		System.out.println("/listProduct.do");
+		System.out.println("/listPurchase.do");
 		
 		if(search.getCurrentPage() ==0 ){
 			search.setCurrentPage(1);
@@ -185,7 +184,7 @@ public class PurchaseController {
 		search.setPageSize(pageSize);
 		
 		// Business logic 수행
-		Map<String , Object> map=productService.getProductList(search);
+		Map<String , Object> map=purchaseService.getPurchaseList(search);
 		
 		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
 		System.out.println(resultPage);
@@ -195,6 +194,6 @@ public class PurchaseController {
 		model.addAttribute("resultPage", resultPage);
 		model.addAttribute("search", search);
 		
-		return "forward:/product/listProduct.jsp";
-	}*/
+		return "forward:/purchase/getPurchaseList.jsp";
+	}
 }

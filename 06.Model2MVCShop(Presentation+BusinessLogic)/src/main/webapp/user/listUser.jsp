@@ -1,16 +1,16 @@
-<%@ page contentType="text/html; charset=euc-kr" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
-<title>È¸¿ø ¸ñ·Ï Á¶È¸</title>
+<title>íšŒì› ëª©ë¡ ì¡°íšŒ</title>
 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
 <script type="text/javascript">
 
-	// °Ë»ö / page µÎ°¡Áö °æ¿ì ¸ğµÎ Form Àü¼ÛÀ» À§ÇØ JavaScrpt ÀÌ¿ë  
+	// ê²€ìƒ‰ / page ë‘ê°€ì§€ ê²½ìš° ëª¨ë‘ Form ì „ì†¡ì„ ìœ„í•´ JavaScrpt ì´ìš©  
 	function fncGetUserList(currentPage) {
 		document.getElementById("currentPage").value = currentPage;
 	   	document.detailForm.submit();		
@@ -34,7 +34,7 @@
 		<td background="/images/ct_ttl_img02.gif" width="100%" style="padding-left:10px;">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td width="93%" class="ct_ttl01">È¸¿ø ¸ñ·ÏÁ¶È¸</td>
+					<td width="93%" class="ct_ttl01">íšŒì› ëª©ë¡ì¡°íšŒ</td>
 				</tr>
 			</table>
 		</td>
@@ -48,8 +48,8 @@
 	<tr>
 		<td align="right">
 			<select name="searchCondition" class="ct_input_g" style="width:80px">
-				<option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>È¸¿øID</option>
-				<option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>È¸¿ø¸í</option>
+				<option value="0"  ${ ! empty search.searchCondition && search.searchCondition==0 ? "selected" : "" }>íšŒì›ID</option>
+				<option value="1"  ${ ! empty search.searchCondition && search.searchCondition==1 ? "selected" : "" }>íšŒì›ëª…</option>
 			</select>
 			<input type="text" name="searchKeyword" 
 						value="${! empty search.searchKeyword ? search.searchKeyword : ""}"  
@@ -60,7 +60,7 @@
 				<tr>
 					<td width="17" height="23"><img src="/images/ct_btnbg01.gif" width="17" height="23"></td>
 					<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
-						<a href="javascript:fncGetUserList('1');">°Ë»ö</a>
+						<a href="javascript:fncGetUserList('1');">ê²€ìƒ‰</a>
 					</td>
 					<td width="14" height="23"><img src="/images/ct_btnbg03.gif" width="14" height="23"></td>
 				</tr>
@@ -72,17 +72,17 @@
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;">
 	<tr>
 		<td colspan="11" >
-			ÀüÃ¼  ${resultPage.totalCount } °Ç¼ö, ÇöÀç ${resultPage.currentPage}  ÆäÀÌÁö
+			ì „ì²´  ${resultPage.totalCount } ê±´ìˆ˜, í˜„ì¬ ${resultPage.currentPage}  í˜ì´ì§€
 		</td>
 	</tr>
 	<tr>
 		<td class="ct_list_b" width="100">No</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b" width="150">È¸¿øID</td>
+		<td class="ct_list_b" width="150">íšŒì›ID</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b" width="150">È¸¿ø¸í</td>
+		<td class="ct_list_b" width="150">íšŒì›ëª…</td>
 		<td class="ct_line02"></td>
-		<td class="ct_list_b">ÀÌ¸ŞÀÏ</td>		
+		<td class="ct_list_b">ì´ë©”ì¼</td>		
 	</tr>
 	<tr>
 		<td colspan="11" bgcolor="808285" height="1"></td>

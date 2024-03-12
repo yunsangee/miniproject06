@@ -49,7 +49,7 @@ public class ProductController {
 	int pageSize;
 	
 	
-	@RequestMapping("/addProductView.do")
+	@RequestMapping("/addProductVieew.do")
 	public String addProductView() throws Exception {
 
 		System.out.println("/addProductView.do");

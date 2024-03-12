@@ -12,7 +12,7 @@
 		<result property="purchaseProd.prodNo" 	column="prod_no" 			jdbcType="INTEGER"/>
 		<result property="buyer.userId" 		column="buyer_id" 			jdbcType="VARCHAR"/>
 		<result property="paymentOption" 		column="payment_option" 	jdbcType="CHAR"/>
-		<result property="receiverName" 		column="receiver_name" 		jdbcType="INTEGER"/>
+		<result property="receiverName" 		column="receiver_name" 		jdbcType="VARCHAR"/>
 		<result property="receiverPhone"		column="receiver_phone" 	jdbcType="VARCHAR" />
 		<result property="divyAddr" 			column="demailaddr" 		jdbcType="VARCHAR" />
 		<result property="divyRequest" 			column="dlvy_request" 		jdbcType="VARCHAR" />
@@ -41,12 +41,12 @@
 	 <update	id="updatePurchase"	parameterType="purchase" >
 	   	UPDATE transaction
 	   	<set>
-	   		buyer_id 				= #{buyer.userId} ,
-			payment_option	= #{paymentOption},
-			receiver_name	= #{receiverName} ,
-			demailaddr			= #{divyAddr},
-			order_data			= #{orderDate},
-			dlvy_date				= #{divyDate}
+	   	
+			payment_option	= #{paymentOption:VARCHAR},
+			receiver_name	= #{receiverName:VARCHAR} ,
+			demailaddr		= #{divyAddr:VARCHAR},
+			order_data		= #{orderDate:DATE},
+			dlvy_date		= #{divyDate:DATE}
 	   	</set>
 	   	WHERE tran_no = #{tranNo}
 	 </update>

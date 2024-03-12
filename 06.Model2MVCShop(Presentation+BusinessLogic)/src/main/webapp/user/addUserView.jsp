@@ -1,39 +1,39 @@
-<%@ page contentType="text/html; charset=euc-kr" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <html>
 <head>
-<title>È¸¿ø°¡ÀÔ</title>
+<title>íšŒì›ê°€ì…</title>
 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
 <script type="text/javascript">
 
 function fncAddUser() {
-	// Form À¯È¿¼º °ËÁõ
+	// Form ìœ íš¨ì„± ê²€ì¦
 	var id=document.detailForm.userId.value;
 	var pw=document.detailForm.password.value;
 	var pw_confirm=document.detailForm.password2.value;
 	var name=document.detailForm.userName.value;
 	
 	if(id == null || id.length <1){
-		alert("¾ÆÀÌµğ´Â ¹İµå½Ã ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù.");
+		alert("ì•„ì´ë””ëŠ” ë°˜ë“œì‹œ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
 		return;
 	}
 	if(pw == null || pw.length <1){
-		alert("ÆĞ½º¿öµå´Â  ¹İµå½Ã ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù.");
+		alert("íŒ¨ìŠ¤ì›Œë“œëŠ”  ë°˜ë“œì‹œ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
 		return;
 	}
 	if(pw_confirm == null || pw_confirm.length <1){
-		alert("ÆĞ½º¿öµå È®ÀÎÀº  ¹İµå½Ã ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù.");
+		alert("íŒ¨ìŠ¤ì›Œë“œ í™•ì¸ì€  ë°˜ë“œì‹œ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
 		return;
 	}
 	if(name == null || name.length <1){
-		alert("ÀÌ¸§Àº  ¹İµå½Ã ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù.");
+		alert("ì´ë¦„ì€  ë°˜ë“œì‹œ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
 		return;
 	}
 	
 	if(document.detailForm.password.value != document.detailForm.password2.value) {
-		alert("ºñ¹Ğ¹øÈ£ È®ÀÎÀÌ ÀÏÄ¡ÇÏÁö ¾Ê½À´Ï´Ù.");
+		alert("ë¹„ë°€ë²ˆí˜¸ í™•ì¸ì´ ì¼ì¹˜í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
 		document.detailForm.password2.focus();
 		return;
 	}
@@ -52,7 +52,7 @@ function check_email(frm) {
 	alert
 	var email=document.detailForm.email.value;
     if(email != "" && (email.indexOf('@') < 1 || email.indexOf('.') == -1)){
-    	alert("ÀÌ¸ŞÀÏ Çü½ÄÀÌ ¾Æ´Õ´Ï´Ù.");
+    	alert("ì´ë©”ì¼ í˜•ì‹ì´ ì•„ë‹™ë‹ˆë‹¤.");
 		return false;
     }
     return true;
@@ -64,9 +64,9 @@ function checkSsn() {
 	var today; 
 
 	ssn = document.detailForm.ssn.value;
-	// À¯È¿ÇÑ ÁÖ¹Î¹øÈ£ Çü½ÄÀÎ °æ¿ì¸¸ ³ªÀÌ °è»ê ÁøÇà, PortalJuminCheck ÇÔ¼ö´Â CommonScript.js ÀÇ °øÅë ÁÖ¹Î¹øÈ£ Ã¼Å© ÇÔ¼öÀÓ 
+	// ìœ íš¨í•œ ì£¼ë¯¼ë²ˆí˜¸ í˜•ì‹ì¸ ê²½ìš°ë§Œ ë‚˜ì´ ê³„ì‚° ì§„í–‰, PortalJuminCheck í•¨ìˆ˜ëŠ” CommonScript.js ì˜ ê³µí†µ ì£¼ë¯¼ë²ˆí˜¸ ì²´í¬ í•¨ìˆ˜ì„ 
 	if(!PortalJuminCheck(ssn)) {
-		alert("Àß¸øµÈ ÁÖ¹Î¹øÈ£ÀÔ´Ï´Ù.");
+		alert("ì˜ëª»ëœ ì£¼ë¯¼ë²ˆí˜¸ì…ë‹ˆë‹¤.");
 		return false;
 	}
 }
@@ -112,7 +112,7 @@ function resetData() {
 		<td background="/images/ct_ttl_img02.gif" width="100%" style="padding-left:10px;">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td width="93%" class="ct_ttl01">È¸¿ø°¡ÀÔ</td>
+					<td width="93%" class="ct_ttl01">íšŒì›ê°€ì…</td>
 					<td width="20%" align="right">&nbsp;</td>
 				</tr>
 			</table>
@@ -131,7 +131,7 @@ function resetData() {
 	
 	<tr>
 		<td width="104" class="ct_write">
-			¾ÆÀÌµğ <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
+			ì•„ì´ë”” <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
@@ -148,7 +148,7 @@ function resetData() {
 									<img src="/images/ct_btng01.gif" width="4" height="21"/>
 								</td>
 								<td align="center" background="/images/ct_btng02.gif" class="ct_btn" style="padding-top:3px;">
-									<a href="javascript:fncCheckDuplication();" id="btnCmfID">IDÁßº¹È®ÀÎ</a>
+									<a href="javascript:fncCheckDuplication();" id="btnCmfID">IDì¤‘ë³µí™•ì¸</a>
 								</td>
 								<td width="4" height="21">
 									<img src="/images/ct_btng03.gif" width="4" height="21"/>
@@ -167,7 +167,7 @@ function resetData() {
 	
 	<tr>
 		<td width="104" class="ct_write">
-			ºñ¹Ğ¹øÈ£ <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
+			ë¹„ë°€ë²ˆí˜¸ <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
@@ -182,7 +182,7 @@ function resetData() {
 	
 	<tr>
 		<td width="104" class="ct_write">
-			ºñ¹Ğ¹øÈ£ È®ÀÎ <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
+			ë¹„ë°€ë²ˆí˜¸ í™•ì¸ <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
@@ -197,7 +197,7 @@ function resetData() {
 	
 	<tr>
 		<td width="104" class="ct_write">
-			ÀÌ¸§ <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
+			ì´ë¦„ <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"/>
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
@@ -211,12 +211,12 @@ function resetData() {
 	</tr>
 	
 	<tr>
-		<td width="104" class="ct_write">ÁÖ¹Î¹øÈ£</td>
+		<td width="104" class="ct_write">ì£¼ë¯¼ë²ˆí˜¸</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input 	type="text" name="ssn" class="ct_input_g" style="width:100px; height:19px" 
 							onChange="javascript:checkSsn();"  maxLength="13" />
-			-Á¦¿Ü, 13ÀÚ¸® ÀÔ·Â
+			-ì œì™¸, 13ìë¦¬ ì…ë ¥
 		</td>
 	</tr>
 
@@ -225,7 +225,7 @@ function resetData() {
 	</tr>
 	
 	<tr>
-		<td width="104" class="ct_write">ÁÖ¼Ò</td>
+		<td width="104" class="ct_write">ì£¼ì†Œ</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input		type="text" name="addr" class="ct_input_g" 
@@ -238,7 +238,7 @@ function resetData() {
 	</tr>
 	
 	<tr>
-		<td width="104" class="ct_write">ÈŞ´ëÀüÈ­¹øÈ£</td>
+		<td width="104" class="ct_write">íœ´ëŒ€ì „í™”ë²ˆí˜¸</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<select 	name="phone1" class="ct_input_g" style="width:50px; height:25px"
@@ -263,7 +263,7 @@ function resetData() {
 	</tr>
 	
 	<tr>
-		<td width="104" class="ct_write">ÀÌ¸ŞÀÏ </td>
+		<td width="104" class="ct_write">ì´ë©”ì¼ </td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<table border="0" cellspacing="0" cellpadding="0">
@@ -294,7 +294,7 @@ function resetData() {
 						<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 					</td>
 					<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
-						<a href="javascript:fncAddUser();">°¡ÀÔ</a>
+						<a href="javascript:fncAddUser();">ê°€ì…</a>
 					</td>
 					<td width="14" height="23">
 						<img src="/images/ct_btnbg03.gif" width="14" height="23"/>
@@ -304,7 +304,7 @@ function resetData() {
 						<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 					</td>
 					<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
-						<a href="javascript:resetData();">Ãë¼Ò</a>
+						<a href="javascript:resetData();">ì·¨ì†Œ</a>
 					</td>
 					<td width="14" height="23">
 						<img src="/images/ct_btnbg03.gif" width="14" height="23"/>

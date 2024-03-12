@@ -1,10 +1,10 @@
-<%@ page contentType="text/html; charset=euc-kr" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
-<title>¾ÆÀÌµğ Áßº¹ È®ÀÎ</title>
+<title>ì•„ì´ë”” ì¤‘ë³µ í™•ì¸</title>
 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
@@ -20,12 +20,12 @@ window.onload = function(){
 }
 
 function fncCheckDuplication() {
-	// Form À¯È¿¼º °ËÁõ
+	// Form ìœ íš¨ì„± ê²€ì¦
 	if(document.detailForm.userId.value != null && document.detailForm.userId.value.length >0) {
 	    document.detailForm.action='/checkDuplication.do';
 	    document.detailForm.submit();
 	}else {
-		alert('¾ÆÀÌµğ´Â ¹İµå½Ã ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù.');
+		alert('ì•„ì´ë””ëŠ” ë°˜ë“œì‹œ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.');
 	}
 	document.getElementById("userId").focus(); 
 }
@@ -44,7 +44,7 @@ function fncUseId() {
 
 <form name="detailForm"  method="post">
 
-<!-- Å¸ÀÌÆ² ½ÃÀÛ -->
+<!-- íƒ€ì´í‹€ ì‹œì‘ -->
 <table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
 	<tr>
 		<td width="15" height="37">
@@ -53,7 +53,7 @@ function fncUseId() {
 		<td background="/images/ct_ttl_img02.gif" width="100%" style="padding-left:10px;">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td width="93%" class="ct_ttl01">IDÁßº¹È®ÀÎ</td>
+					<td width="93%" class="ct_ttl01">IDì¤‘ë³µí™•ì¸</td>
 					<td width="20%" align="right">&nbsp;</td>
 				</tr>
 			</table>
@@ -63,9 +63,9 @@ function fncUseId() {
 		</td>
 	</tr>
 </table>
-<!-- Å¸ÀÌÆ² ³¡ -->
+<!-- íƒ€ì´í‹€ ë -->
 
-<!-- °Ë»ö°á°ú ½ÃÀÛ -->
+<!-- ê²€ìƒ‰ê²°ê³¼ ì‹œì‘ -->
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	<tr>
 		<td height="32" style="padding-left:12px;">
@@ -74,8 +74,8 @@ function fncUseId() {
 					<td width="8" style="padding-bottom:3px;"><img src="/images/ct_bot_ttl01.gif" width="4" height="7"></td>
 					<td class="ct_ttl02">
 						<c:if test="${ ! empty result }">
-							${userId} ´Â »ç¿ë
-							${ result ? "" : "ºÒ" }°¡´É ÇÕ´Ï´Ù.
+							${userId} ëŠ” ì‚¬ìš©
+							${ result ? "" : "ë¶ˆ" }ê°€ëŠ¥ í•©ë‹ˆë‹¤.
 						</c:if>
 					</td>
 				</tr>
@@ -88,9 +88,9 @@ function fncUseId() {
 	</tr>
 	
 </table>
-<!-- °Ë»ö°á°ú ³¡ -->
+<!-- ê²€ìƒ‰ê²°ê³¼ ë -->
 
-<!-- µî·Ï Å×ÀÌºí½ÃÀÛ -->
+<!-- ë“±ë¡ í…Œì´ë¸”ì‹œì‘ -->
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:13px;">
 	
 	<tr>
@@ -98,10 +98,10 @@ function fncUseId() {
 	</tr>
 	
 	<tr>
-		<td width="104" class="ct_write">¾ÆÀÌµğ <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"></td>
+		<td width="104" class="ct_write">ì•„ì´ë”” <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle"></td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
-			<!-- Å×ÀÌºí ½ÃÀÛ -->
+			<!-- í…Œì´ë¸” ì‹œì‘ -->
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
 					<td width="105">
@@ -117,7 +117,7 @@ function fncUseId() {
 									<img src="/images/ct_btng01.gif" width="4" height="21">
 								</td>
 								<td align="center" background="/images/ct_btng02.gif" class="ct_btn" style="padding-top:3px;">
-									<a href="javascript:fncCheckDuplication();">Áßº¹È®ÀÎ</a>
+									<a href="javascript:fncCheckDuplication();">ì¤‘ë³µí™•ì¸</a>
 								</td>
 								<td width="4" height="21">
 									<img src="/images/ct_btng03.gif" width="4" height="21"/>
@@ -128,7 +128,7 @@ function fncUseId() {
 					
 				</tr>
 			</table>
-			<!-- Å×ÀÌºí ³¡ -->
+			<!-- í…Œì´ë¸” ë -->
 		</td>
 	</tr>
 
@@ -137,9 +137,9 @@ function fncUseId() {
 	</tr>
 	
 </table>
-<!-- µî·ÏÅ×ÀÌºí ³¡ -->
+<!-- ë“±ë¡í…Œì´ë¸” ë -->
 
-<!-- ¹öÆ° ½ÃÀÛ -->
+<!-- ë²„íŠ¼ ì‹œì‘ -->
 <table width="100%" border="0" cellspacing="0" cellpadding="0"	style="margin-top:10px;">
 	<tr>
 		<td align="center">
@@ -150,7 +150,7 @@ function fncUseId() {
 							<img src="/images/ct_btnbg01.gif" width="17" height="23"/> 
 						</td>
 						<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
-							<a href="javascript:fncUseId();">»ç¿ë</a>
+							<a href="javascript:fncUseId();">ì‚¬ìš©</a>
 						</td>
 						<td width="14" height="23">
 							<img src="/images/ct_btnbg03.gif" width="14" height="23"/>
@@ -161,7 +161,7 @@ function fncUseId() {
 						<img src="/images/ct_btnbg01.gif" width="17" height="23"/>
 					</td>
 					<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
-						<a href="javascript:window.close();">´İ±â</a>
+						<a href="javascript:window.close();">ë‹«ê¸°</a>
 					</td>
 					<td width="14" height="23">
 						<img src="/images/ct_btnbg03.gif" width="14" height="23"/>
@@ -171,7 +171,7 @@ function fncUseId() {
 		</td>
 	</tr>
 </table>
-<!-- ¹öÆ° ³¡ -->
+<!-- ë²„íŠ¼ ë -->
 </form>
 
 </body>

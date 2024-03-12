@@ -1,21 +1,21 @@
-<%@ page contentType="text/html; charset=euc-kr" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
 <head>
-<title>È¸¿ø Á¤º¸ ¼öÁ¤</title>
+<title>íšŒì› ì •ë³´ ìˆ˜ì •</title>
 
 <link rel="stylesheet" href="/css/admin.css" type="text/css">
 
 <script type="text/javascript">
 
 function fncUpdateUser() {
-	// Form À¯È¿¼º °ËÁõ
+	// Form ìœ íš¨ì„± ê²€ì¦
 	var name=document.detailForm.userName.value;
 	
 	if(name == null || name.length <1){
-		alert("ÀÌ¸§Àº  ¹İµå½Ã ÀÔ·ÂÇÏ¼Å¾ß ÇÕ´Ï´Ù.");
+		alert("ì´ë¦„ì€  ë°˜ë“œì‹œ ì…ë ¥í•˜ì…”ì•¼ í•©ë‹ˆë‹¤.");
 		return;
 	}
 		
@@ -33,7 +33,7 @@ function check_email(frm) {
 	alert
 	var email=document.detailForm.email.value;
     if(email != "" && (email.indexOf('@') < 1 || email.indexOf('.') == -1)){
-    	alert("ÀÌ¸ŞÀÏ Çü½ÄÀÌ ¾Æ´Õ´Ï´Ù.");
+    	alert("ì´ë©”ì¼ í˜•ì‹ì´ ì•„ë‹™ë‹ˆë‹¤.");
 		return false;
     }
     return true;
@@ -61,7 +61,7 @@ function resetData() {
 		<td background="/images/ct_ttl_img02.gif" width="100%" style="padding-left:10px;">
 			<table width="100%" border="0" cellspacing="0" cellpadding="0">
 				<tr>
-					<td width="93%" class="ct_ttl01">È¸¿øÁ¤º¸¼öÁ¤</td>
+					<td width="93%" class="ct_ttl01">íšŒì›ì •ë³´ìˆ˜ì •</td>
 					<td width="20%" align="right">&nbsp;</td>
 				</tr>
 			</table>
@@ -79,7 +79,7 @@ function resetData() {
 	
 	<tr>
 		<td width="104" class="ct_write">
-			¾ÆÀÌµğ <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle" />
+			ì•„ì´ë”” <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle" />
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<%--<td class="ct_write01"><%=user.getUserId() %>	</td> --%>
@@ -92,7 +92,7 @@ function resetData() {
 	
 	<tr>
 		<td width="104" class="ct_write">
-			ÀÌ¸§ <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle" />
+			ì´ë¦„ <img src="/images/ct_icon_red.gif" width="3" height="3" align="absmiddle" />
 		</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
@@ -107,7 +107,7 @@ function resetData() {
 	</tr>
 	
 	<tr>
-		<td width="104" class="ct_write">ÁÖ¼Ò</td>
+		<td width="104" class="ct_write">ì£¼ì†Œ</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<%--<input type="text" name="addr" value="<%=user.getAddr() %>" class="ct_input_g" style="width:370px; height:19px"  maxLength="100">--%>
@@ -121,7 +121,7 @@ function resetData() {
 	</tr>
 	
 	<tr>
-		<td width="104" class="ct_write">ÈŞ´ëÀüÈ­¹øÈ£</td>
+		<td width="104" class="ct_write">íœ´ëŒ€ì „í™”ë²ˆí˜¸</td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<select name="phone1" class="ct_input_g" style="width:50px; height:25px" 
@@ -148,7 +148,7 @@ function resetData() {
 	</tr>
 	
 	<tr>
-		<td width="104" class="ct_write">ÀÌ¸ŞÀÏ </td>
+		<td width="104" class="ct_write">ì´ë©”ì¼ </td>
 		<td bgcolor="D6D6D6" width="1"></td>
 		<td class="ct_write01">
 			<input 	type="text" name="email" value="${user.email}" class="ct_input_g" 
@@ -171,7 +171,7 @@ function resetData() {
 						<img src="/images/ct_btnbg01.gif" width="17" height="23" />
 					</td>
 					<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
-						<a href="javascript:fncUpdateUser();">¼öÁ¤</a>
+						<a href="javascript:fncUpdateUser();">ìˆ˜ì •</a>
 					</td>
 					<td width="14" height="23">
 						<img src="/images/ct_btnbg03.gif" width="14" height="23" />
@@ -181,7 +181,7 @@ function resetData() {
 						<img src="/images/ct_btnbg01.gif" width="17" height="23" />
 					</td>
 					<td background="/images/ct_btnbg02.gif" class="ct_btn01" style="padding-top:3px;">
-						<a href="javascript:resetData();">Ãë¼Ò</a>
+						<a href="javascript:resetData();">ì·¨ì†Œ</a>
 					</td>
 					<td width="14" height="23">
 						<img src="/images/ct_btnbg03.gif" width="14" height="23" />

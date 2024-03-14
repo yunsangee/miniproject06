@@ -12,7 +12,7 @@
 		<result property="purchaseProd.prodNo" 	column="prod_no" 			jdbcType="INTEGER"/>
 		<result property="buyer.userId" 		column="buyer_id" 			jdbcType="VARCHAR"/>
 		<result property="paymentOption" 		column="payment_option" 	jdbcType="CHAR"/>
-		<result property="receiverName" 		column="receiver_name" 		jdbcType="INTEGER"/>
+		<result property="receiverName" 		column="receiver_name" 		jdbcType="VARCHAR"/>
 		<result property="receiverPhone"		column="receiver_phone" 	jdbcType="VARCHAR" />
 		<result property="divyAddr" 			column="demailaddr" 		jdbcType="VARCHAR" />
 		<result property="divyRequest" 			column="dlvy_request" 		jdbcType="VARCHAR" />
@@ -41,21 +41,37 @@
 	 <update	id="updatePurchase"	parameterType="purchase" >
 	   	UPDATE transaction
 	   	<set>
-	   		buyer_id 				= #{buyer.userId} ,
-			payment_option	= #{paymentOption},
-			receiver_name	= #{receiverName} ,
-			demailaddr			= #{divyAddr},
-			order_data			= #{orderDate},
-			dlvy_date				= #{divyDate}
+	   	
+			payment_option	= #{paymentOption:VARCHAR},
+			receiver_name	= #{receiverName:VARCHAR} ,
+			demailaddr		= #{divyAddr:VARCHAR},
+			dlvy_request	= #{divyRequest:VARCHAR},
+			dlvy_date		= #{divyDate:DATE}
 	   	</set>
 	   	WHERE tran_no = #{tranNo}
 	 </update>
 		 
+	<update id="updateTranCodeByProd"	parameterType="purchase">
+		UPDATE transaction
+		<set>
+			tran_status_code = 1
+		</set>
+		WHERE prod_no = #{purchaseProd.prodNo}
+	</update>
+	
+	<update id="updateTranCode"	parameterType="purchase">
+		UPDATE transaction
+		<set>
+			tran_status_code = 2
+		</set>
+		WHERE prod_no = #{purchaseProd.prodNo}
+	</update>
+	
 	<!-- SQL : SELECT LIST -->
 	<select  id="getPurchaseList"  parameterType="search"	resultMap="purchaseSelectMap">
 	 SELECT *
 	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-	  					FROM		(	SELECT tran_no , buyer_id , receiver_name , receiver_phone
+	  					FROM		(	SELECT tran_no , buyer_id , receiver_name , receiver_phone, tran_status_code, prod_no
 											FROM transaction
 											ORDER BY tran_no ) inner_table
 						WHERE ROWNUM &lt;= #{endRowNum} )

@@ -7,14 +7,13 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import com.model2.mvc.common.Search;
 import com.model2.mvc.service.domain.*;
 import com.model2.mvc.service.purchase.PurchaseDao;
 import com.model2.mvc.service.purchase.PurchaseService;
-import com.model2.mvc.service.purchase.dao.PurchaseDAO;
+
 
 @Service("purchaseServiceImpl")
 public class PurchaseServiceImpl implements PurchaseService{
@@ -56,6 +55,14 @@ public class PurchaseServiceImpl implements PurchaseService{
 
 	public void updatePurchase(Purchase purchase) throws Exception {
 		purchaseDao.updatePurchase(purchase);
+	}
+	
+	public void updateTranCodeByProd(int tranCode) throws Exception {
+		purchaseDao.updateTranCodeByProd(tranCode);
+	}
+	
+	public void updateTranCode(int tranCode) throws Exception {
+		purchaseDao.updateTranCode(tranCode);
 	}
 
 

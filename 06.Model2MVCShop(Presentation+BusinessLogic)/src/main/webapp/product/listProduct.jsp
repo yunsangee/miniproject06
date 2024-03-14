@@ -142,14 +142,34 @@ function fncGetProductList(currentPage){
         <td></td>
         <td align="left">${vo.regDate}</td>
          <td></td>
-        <td align="left"><c:choose>
+        <td align="left">
+        <c:if test = "${not empty param.menu and param.menu eq 'manage' }" >
+        <c:choose>
+        <c:when test="${vo.proTranCode==null }">
+        판매중
+        </c:when>
+        <c:when test="${vo.proTranCode eq '0' }">
+        구매완료
+        	<a href="/updateTranCodeByProd.do?prodNo=${vo.prodNo }&menu=${param.menu}">배송하기</a>
+        	</c:when>
+         <c:when test="${vo.proTranCode eq '1' }">
+         배송중
+        </c:when> 
+         <c:when test="${vo.proTranCode eq '2' }">  
+         배송완료
+         </c:when>   
+        </c:choose>
+        </c:if>
+              
+        <c:if test = "${empty param.menu or param.menu eq 'null' or param.menu eq 'search' }">
+        <c:choose>
         <c:when test="${vo.proTranCode==null}">
             판매중
         </c:when>
         <c:otherwise>
             재고없음
         </c:otherwise>
-    </c:choose></td>
+    </c:choose></c:if></td>
     </tr>
     <tr>
         <td colspan="11" bgcolor="D6D7D6" height="1"></td>

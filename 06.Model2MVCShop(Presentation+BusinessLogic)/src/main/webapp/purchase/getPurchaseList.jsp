@@ -4,15 +4,10 @@
 <%@ page import="java.util.*"  %>
 <%@ page import="com.model2.mvc.service.domain.Product" %>
 <%@ page import="com.model2.mvc.common.*" %>
-<%@page import="com.model2.mvc.common.util.CommonUtil"%>
     
 <%
    Page resultPage = (Page)request.getAttribute("resultPage");
-   
    Search search =(Search)request.getAttribute("search");
-   String searchCondition = CommonUtil.null2str(search.getSearchCondition());
-   String searchKeyword = CommonUtil.null2str(search.getSearchKeyword());
-   
 %>
 <html>
 <head>
@@ -32,7 +27,7 @@ function fncGetPurchaseList(currentPage){
 
 <div style="width: 98%; margin-left: 10px;">
 
-<form name="detailForm" action="/listUser.do" method="post">
+<form name="detailForm" action="/listPurchase.do" method="post">
 
 <table width="100%" height="37" border="0" cellpadding="0"	cellspacing="0">
 	<tr>
@@ -71,27 +66,39 @@ function fncGetPurchaseList(currentPage){
 
 	
 	  <c:set var="i" value="0" />
-<c:forEach var="purchase" items="${list}">
+	<c:forEach var="purchase" items="${list}">
     <c:set var="i" value="${i + 1}" />
     <tr class="ct_list_pop">
         <td align="center"><a href="/getPurchase.do?tranNo=${purchase.tranNo }">${i}</a></td>
         <td></td>
-        <td align="left"><a href="/getUser.do?">${user.userId}</a></td>
+        <td align="left"><a href="/getUser.do?userId=${user.userId }">${user.userId}</a></td>
         <td></td>
         <td align="left">${purchase.receiverName}</td>
         <td></td>
         <td align="left">${purchase.receiverPhone}</td>
          <td></td>
-          <td align="left"></td>
+          <td align="left">
+          
+         <c:choose>
+         <c:when test="${purchase.tranCode eq '0'}">
+            현재 구매 완료 상태입니다.
+         </c:when>
+         <c:when test="${purchase.tranCode eq '1'}">
+            현재 배송 중 상태입니다.
+         </c:when>
+         <c:otherwise>
+         	현재 배송 완료 상태입니다.
+         </c:otherwise>
+   		 </c:choose>
+          </td>
+          
          <td></td>
-        <td align="left"><c:choose>
-        <c:when test="${vo.proTranCode eq '0'}">
-            판매중
-        </c:when>
-        <c:otherwise>
-            재고없음
-        </c:otherwise>
-    </c:choose></td>
+        <td align="left">
+    
+         <c:if test="${purchase.tranCode eq '1'}">
+         <a href="/updateTranCode.do?prodNo=${purchase.purchaseProd.prodNo }">물건도착</a>
+         </c:if></td>
+     
     </tr>
     <tr>
         <td colspan="11" bgcolor="D6D7D6" height="1"></td>

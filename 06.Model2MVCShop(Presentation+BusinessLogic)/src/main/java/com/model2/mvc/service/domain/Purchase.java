@@ -78,7 +78,7 @@ public class Purchase {
 		return tranCode;
 	}
 	public void setTranCode(String tranCode) {
-		this.tranCode = tranCode;
+		this.tranCode = tranCode.trim();
 	}
 	public int getTranNo() {
 		return tranNo;

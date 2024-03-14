@@ -28,4 +28,8 @@ public interface PurchaseDao {
 	// addpurchas product 가져오기
 	public Product getPurchase02(int prodNo) throws Exception;
 	
+	public void updateTranCodeByProd(int tranCode) throws Exception;
+	
+	public void updateTranCode(int tranCode) throws Exception;
+	
 }

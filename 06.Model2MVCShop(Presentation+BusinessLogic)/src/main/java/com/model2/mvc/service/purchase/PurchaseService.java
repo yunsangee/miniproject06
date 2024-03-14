@@ -17,4 +17,8 @@ import com.model2.mvc.service.domain.Purchase;
 		public void updatePurchase(Purchase purchase) throws Exception;
 
 		public Product getPurchase02(int prodNo) throws Exception;
+		
+		public void updateTranCodeByProd(int tranCode) throws Exception;
+		
+		public void updateTranCode(int tranCode) throws Exception;
 }

@@ -77,22 +77,28 @@ function fncGetPurchaseList(currentPage){
         <td></td>
         <td align="left">${purchase.receiverPhone}</td>
          <td></td>
-          <td align="left"></td>
+          <td align="left">
+          
+         <c:choose>
+         <c:when test="${purchase.tranCode eq '0'}">
+            현재 구매 완료 상태입니다.
+         </c:when>
+         <c:when test="${purchase.tranCode eq '1'}">
+            현재 배송 중 상태입니다.
+         </c:when>
+         <c:otherwise>
+         	현재 배송 완료 상태입니다.
+         </c:otherwise>
+   		 </c:choose>
+          </td>
+          
          <td></td>
         <td align="left">
-       		
-		
-		<c:if test = "${empty param.menu or param.menu eq 'null' or param.menu eq 'search' }">
-		<c:choose>
-        <c:when test="${product.proTranCode eq '0'}">
-            판매중
-        </c:when>
-        <c:otherwise>
-            재고없음
-        </c:otherwise>  </c:choose>
-        </c:if>
-        
-  </td>
+    
+         <c:if test="${purchase.tranCode eq '1'}">
+         <a href="/updateTranCode.do?prodNo=${purchase.purchaseProd.prodNo }">물건도착</a>
+         </c:if></td>
+     
     </tr>
     <tr>
         <td colspan="11" bgcolor="D6D7D6" height="1"></td>

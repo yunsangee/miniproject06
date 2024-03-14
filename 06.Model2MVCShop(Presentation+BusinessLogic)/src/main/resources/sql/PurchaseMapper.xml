@@ -45,17 +45,33 @@
 			payment_option	= #{paymentOption:VARCHAR},
 			receiver_name	= #{receiverName:VARCHAR} ,
 			demailaddr		= #{divyAddr:VARCHAR},
-			order_data		= #{orderDate:DATE},
+			dlvy_request	= #{divyRequest:VARCHAR},
 			dlvy_date		= #{divyDate:DATE}
 	   	</set>
 	   	WHERE tran_no = #{tranNo}
 	 </update>
 		 
+	<update id="updateTranCodeByProd"	parameterType="purchase">
+		UPDATE transaction
+		<set>
+			tran_status_code = 1
+		</set>
+		WHERE prod_no = #{purchaseProd.prodNo}
+	</update>
+	
+	<update id="updateTranCode"	parameterType="purchase">
+		UPDATE transaction
+		<set>
+			tran_status_code = 2
+		</set>
+		WHERE prod_no = #{purchaseProd.prodNo}
+	</update>
+	
 	<!-- SQL : SELECT LIST -->
 	<select  id="getPurchaseList"  parameterType="search"	resultMap="purchaseSelectMap">
 	 SELECT *
 	  	FROM (	SELECT inner_table.* , ROWNUM AS row_seq
-	  					FROM		(	SELECT tran_no , buyer_id , receiver_name , receiver_phone
+	  					FROM		(	SELECT tran_no , buyer_id , receiver_name , receiver_phone, tran_status_code, prod_no
 											FROM transaction
 											ORDER BY tran_no ) inner_table
 						WHERE ROWNUM &lt;= #{endRowNum} )

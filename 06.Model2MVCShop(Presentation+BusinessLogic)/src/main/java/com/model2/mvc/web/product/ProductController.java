@@ -21,6 +21,7 @@ import com.model2.mvc.common.Page;
 import com.model2.mvc.common.Search;
 import com.model2.mvc.service.domain.Product;
 import com.model2.mvc.service.product.ProductService;
+import com.model2.mvc.service.purchase.PurchaseService;
 
 
 
@@ -32,6 +33,10 @@ public class ProductController {
 	@Autowired
 	@Qualifier("productServiceImpl")
 	private ProductService productService;
+	
+	@Autowired
+	@Qualifier("purchaseServiceImpl")
+	private PurchaseService purchaseService;
 	//setter Method 구현 않음
 		
 	public ProductController(){
@@ -49,7 +54,7 @@ public class ProductController {
 	int pageSize;
 	
 	
-	@RequestMapping("/addProductVieew.do")
+	@RequestMapping("/addProductView.do")
 	public String addProductView() throws Exception {
 
 		System.out.println("/addProductView.do");
@@ -159,5 +164,21 @@ public class ProductController {
 		model.addAttribute("search", search);
 		
 		return "forward:/product/listProduct.jsp";
+	}
+	
+	@RequestMapping("/updateTranCodeByProd.do")
+	public String updateTranCodeByProd(@ModelAttribute("Product") Product product,
+						@RequestParam("prodNo") int prodNo , Model model ) throws Exception{
+
+		System.out.println("/updateTranCodeByProd.do");
+		//Business Logic
+		System.out.println("protranCode test:" + product.getProTranCode());
+		purchaseService.updateTranCodeByProd(prodNo);
+		
+		System.out.println("/updateTranCodeByProd.do");
+		//Business Logic
+		// Model 과 View 연결
+			
+		return "forward:/listProduct.do";
 	}
 }

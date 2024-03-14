@@ -15,7 +15,7 @@
 <!--
 function fncUpdateProduct(){
 			
-	document.detailForm.action='/updateProduct.do?userId={user.userId}';
+	document.detailForm.action='/updateProduct.do';
 	document.detailForm.submit();
 }
 -->
@@ -121,8 +121,9 @@ function fncUpdateProduct(){
 	</tr>
 	<tr>
 		<td height="1" colspan="3" bgcolor="D6D6D6"></td>
-		<input type = "hidden" name="regDatee" value="${product.regDate }"/>
+		
 	</tr>
+	<input type = "hidden" name="regDatee" value="${product.regDate }"/>
 </table>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0"	style="margin-top: 10px;">

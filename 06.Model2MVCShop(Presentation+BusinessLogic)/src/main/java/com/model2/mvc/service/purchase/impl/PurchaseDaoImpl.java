@@ -68,5 +68,15 @@ public class PurchaseDaoImpl implements PurchaseDao{
 	public Product getPurchase02(int prodNo) throws Exception {
 		return sqlSession.selectOne("ProductMapper.getProduct", prodNo);
 	}
+	
+	@Override
+	public void updateTranCodeByProd(int tranCode) throws Exception {
+		sqlSession.update("PurchaseMapper.updateTranCodeByProd", tranCode);
+	}
+	
+	@Override
+	public void updateTranCode(int tranCode) throws Exception {
+		sqlSession.update("PurchaseMapper.updateTranCode", tranCode);
+	}
 }
 	

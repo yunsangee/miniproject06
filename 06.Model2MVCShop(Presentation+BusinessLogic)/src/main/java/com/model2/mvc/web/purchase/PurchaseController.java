@@ -160,8 +160,8 @@ public class PurchaseController {
 		
 		purchaseService.updatePurchase(purchase);
 		purchase = purchaseService.getPurchase(purchase.getTranNo());
-		
-		purchase.setOrderDate(Date.valueOf(request.getParameter("regDatee")));
+		System.out.println(request.getParameter("regDate"));
+		//purchase.setOrderDate(Date.valueOf(request.getParameter("regDate")));
 		//Product getProd = productService.getProduct(tranNo);
 		System.out.println("prodno test: " + purchase);
 		purchase.setPurchaseProd(productService.getProduct(purchase.getPurchaseProd().getProdNo()));
@@ -174,7 +174,9 @@ public class PurchaseController {
 	}
 
 	@RequestMapping("/listPurchase.do")
-	public String listPurchase( @ModelAttribute("search") Search search , Model model , HttpServletRequest request) throws Exception{
+	public String listPurchase( @ModelAttribute("Product") Product product,
+								@ModelAttribute("search") Search search , 
+								Model model , HttpServletRequest request) throws Exception{
 		
 		System.out.println("/listPurchase.do");
 		
@@ -184,8 +186,7 @@ public class PurchaseController {
 		search.setPageSize(pageSize);
 		
 		// Business logic 수행
-		Map<String , Object> map=purchaseService.getPurchaseList(search);
-		
+		Map<String , Object> map = purchaseService.getPurchaseList(search);
 		Page resultPage = new Page( search.getCurrentPage(), ((Integer)map.get("totalCount")).intValue(), pageUnit, pageSize);
 		System.out.println(resultPage);
 		
@@ -195,5 +196,21 @@ public class PurchaseController {
 		model.addAttribute("search", search);
 		
 		return "forward:/purchase/getPurchaseList.jsp";
+	}
+	
+	@RequestMapping("/updateTranCode.do")
+	public String updateTranCodeByProd(@ModelAttribute("Purchase") Purchase purchase,
+						@RequestParam("prodNo") int prodNo , Model model ) throws Exception{
+
+		System.out.println("/updateTranCode.do");
+		//Business Logic
+		
+		purchaseService.updateTranCode(prodNo);
+		
+		System.out.println("/updateTranCodeByProd.do");
+		//Business Logic
+		// Model 과 View 연결
+			
+		return "forward:/listPurchase.do";
 	}
 }
